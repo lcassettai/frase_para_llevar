@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <form action="../../index2.html" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Usuario" name="usuario">
-        <span class="glyphicon glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="pass">

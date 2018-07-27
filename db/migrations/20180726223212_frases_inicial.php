@@ -32,9 +32,18 @@ class FrasesInicial extends AbstractMigration
      */
     public function change()
     {	
+    	$table = $this->table('tipo_usuarios');
+    	$table->addColumn('descripcion','string',array('limit' => 200))
+    		  ->create();
+
     	$table = $this->table('usuarios');
         $table->addColumn('usuario', 'string', array('limit' => 200))
               ->addColumn('password', 'string', array('limit' => 1000))
+              ->addColumn('nombre', 'string', array('limit' => 200))
+              ->addColumn('apellido', 'string', array('limit' => 200))
+              ->addColumn('tipo_usuario','integer')
+              ->addColumn('activo','boolean')
+              ->addForeignKey('tipo_usuario','tipo_usuarios','id')
               ->create();
 
     	$table = $this->table('categorias');
@@ -67,6 +76,23 @@ class FrasesInicial extends AbstractMigration
               ->addForeignKey('id_categoria', 'categorias', 'id')
               ->addForeignKey('id_frase', 'frases', 'id')
               ->create();
+
+
+        //-----------------------------------------------------------------------------------
+        //---- Datos Basicos-----------------------------------------------------------------
+        //-----------------------------------------------------------------------------------
+
+        $tipo_usuarios = [
+            [
+              'descripcion'  => 'Administrador'
+            ],
+            [
+              'descripcion'  => 'Participante'
+            ]
+        ];
+
+		$this->table('tipo_usuarios')->insert($tipo_usuarios)->save();
+
 
     }
 }
