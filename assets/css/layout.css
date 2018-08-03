@@ -1,0 +1,13 @@
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    height: auto !important;
+    padding: 10px;
+    text-align: center;
+}
+
+.skin-red .main-header li.user-header {
+    background-color: #232e33 !important;
+}
+
+.swal2-popup {
+    font-size: 1em !important;
+}

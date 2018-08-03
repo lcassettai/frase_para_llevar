@@ -15,7 +15,8 @@
 	},
 	"require": {
 		 "robmorgan/phinx": "^0.10.0",
-		"php": ">=5.3.7"
+		"php": ">=5.3.7",
+		"wixel/gump": "dev-master"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

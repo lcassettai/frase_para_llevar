@@ -32,26 +32,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-
+<?php if(isset($errores)):?>
+<div class="alert alert-danger">
+  <strong>Parece que algo salio mal!</strong> <br>
+  <p><?php echo $errores;?></p>
+</div>
+<?php endif;?>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <div class="login-logo">
-	    <a href="../../index2.html">Frase para <b>Llevar</b></a>
+      Frase para <b>Llevar</b>
 	  </div>	
-    <form action="../../index2.html" method="post">
+  	<?php echo form_open('login/verificar_credenciales'); ?>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Usuario" name="usuario">
+        <input type="text" class="form-control" placeholder="Usuario" name="usuario"
+        <?php if (isset($_COOKIE['usuario'])){
+          echo "value='".$_COOKIE['usuario']."'";
+        }?>
+        >
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="pass">
+        <input type="password" class="form-control" placeholder="Password" name="password" 
+        <?php if (isset($_COOKIE['pass'])){
+          echo "value='".$_COOKIE['pass']."'";
+        }?>>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Recordarme
+              <input type="checkbox" name="recordarme" 
+                <?php if (isset($_COOKIE['recordarme'])){
+                   echo "checked='".$_COOKIE['recordarme']."'";
+                }?>
+              > Recordarme
             </label>
           </div>
         </div>

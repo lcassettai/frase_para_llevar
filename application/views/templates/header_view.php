@@ -33,6 +33,9 @@
   <script src="<?php echo assets_url('bower_components');?>bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo assets_url('assets');?>js/adminlte.min.js"></script>
+  <!-- Sweet alert -->
+   <link rel="stylesheet" href="<?php echo assets_url('node_modules');?>sweetalert2/dist/sweetalert2.css"></link>
+  <script src="<?php echo assets_url('node_modules');?>sweetalert2/dist/sweetalert2.min.js"></script>
 
 
   <!-- Google Font 
@@ -63,6 +66,41 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">    
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="glyphicon glyphicon-user"></i>
+              <span class="hidden-xs"><?php echo ucfirst($_SESSION['apellido']) . ' ' . ucfirst($_SESSION['nombre']);?></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <p>
+                  <?php echo $_SESSION['usuario']?>
+                  <small>
+                    <?php if($_SESSION['tipo_usuario'] == 1){
+                      echo 'ADMINISTRADOR';
+                    }else{
+                      echo 'PARTICIPANTE';
+                    }
+
+                     ?>                      
+                  </small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="<?php echo site_url('login/logout');?>" class="btn btn-default btn-flat">Cerrar sesion</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -74,7 +112,11 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="<?php echo site_url('inicio');?>"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+        <li><a href="<?php echo site_url('inicio');?>"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+        <?php if($_SESSION['tipo_usuario'] == 1):?>
+        <li><a href="<?php echo site_url('usuarios');?>"><i class="fa fa-users"></i> <span>Gestion de usuarios</span></a></li>
+       <?php endif;?>
+        <li><a href="<?php echo site_url('login/logout');?>"><i class="glyphicon glyphicon-circle-arrow-left"></i> <span>Cerrar sesion</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </div>
