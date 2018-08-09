@@ -77,4 +77,26 @@ class Usuarios_model extends CI_Model {
             $this->db->where('id', $id['id']);       
             $this->db->update('usuarios');
         }
+
+        public function obtener_operaciones_historial($id){
+            $this->db->limit(30);
+            $this->db->order_by("fecha_hora", "desc");
+            $this->db->order_by("fecha_hora", "desc");
+            $query = $this->db->get_where('control_usuarios', array(
+                'id_usuario' => $id
+                ));
+            
+            return $query->result_array();
+        }
+
+        public function registrar_operacion($datos,$tipo_operacion){
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+             $data = array(
+                    'id_usuario' => $datos,
+                    'fecha_hora' => date('Y-m-d H:i:s'),
+                    'operacion' => $tipo_operacion
+            );
+
+            $this->db->insert('control_usuarios', $data); 
+        }
 }

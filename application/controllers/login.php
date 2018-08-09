@@ -6,6 +6,7 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('form');
+		$this->load->model('usuarios_model');
 	}
 
 
@@ -19,6 +20,9 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
+		if(isset($_SESSION['id'])){
+			$this->usuarios_model->registrar_operacion($_SESSION['id'],'logout');
+		}
 		$_SESSION = array();
 		session_destroy();
 		$this->load->view('login/login_view');
@@ -39,16 +43,17 @@ class Login extends CI_Controller {
         {
         	$usuario = $this->input->post('usuario');
         	$pass = $this->input->post('password');
-            $this->load->model('usuarios_model');
 			$datos = $this->usuarios_model->obtener_usuario($usuario,$pass);
 
 			if(!empty($datos)){
+				$_SESSION['id'] = $datos[0]['id'];
 				$_SESSION['usuario'] = $datos[0]['usuario'];
 				$_SESSION['tipo_usuario'] = $datos[0]['tipo_usuario'];
 				$_SESSION['nombre'] = $datos[0]['nombre'];
 				$_SESSION['apellido'] = $datos[0]['apellido'];
 				$_SESSION['activo'] = $datos[0]['activo'];
 
+				$this->usuarios_model->registrar_operacion($datos[0]['id'],'login');
 			if (!empty($_POST['recordarme'])){
 				setcookie("usuario",$datos[0]['usuario'],time()+(60*60*24*365),"/");
 				setcookie("pass",$pass,time()+(60*60*24*365),"/");

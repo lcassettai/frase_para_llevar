@@ -93,6 +93,20 @@ class FrasesInicial extends AbstractMigration
 
 		$this->table('tipo_usuarios')->insert($tipo_usuarios)->save();
 
+    $tipo_usuarios = [
+            [
+              'id'  => '1',
+              'usuario' => 'lcassettai',
+              'password' => '$2y$10$r060nWfKZviJNCRTWhwVZOb36jYgIHHzm8ZiY8MtCBQ6pwuZPF36a',
+              'nombre' => 'luciano',
+              'apellido' => 'cassettai',
+              'tipo_usuario' => 1,
+              'activo' => 1
+             ]
+        ];
+
+    $this->table('usuarios')->insert($tipo_usuarios)->save();
+
 
     }
 }

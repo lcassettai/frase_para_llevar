@@ -71,6 +71,25 @@ function eliminar_usuario(id){
 	})
 }
 
+function ver_historico(id){
+	 $.ajax({
+	      type: "POST",
+	      url: "usuarios/obtener_historial_usuario",
+	      data: 'id_usuario='+id
+	    }).done(function( resultado ) { 
+	    	resultado = JSON.parse(resultado);
+	    	$("#table_historico > tbody").html("");
+
+	    	for(var i = 0; i < resultado.length ; i++){
+	    		console.log(resultado[i]);
+	    		var tr = '<tr><td>'+resultado[i]["id"]+'</td><td>'+resultado[i]["operacion"]+'</td><td>'+resultado[i]["fecha_hora"]+'</td></tr>';
+	    		$('#table_historico').append(tr);
+	    	}
+	    	
+	    	$("#modal").modal();
+	    }) 
+}
+
 function limpiar_campos(){
     $('#nombre').val('');
     $('#apellido').val('');

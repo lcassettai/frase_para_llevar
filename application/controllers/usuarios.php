@@ -52,8 +52,25 @@ class Usuarios extends CI_Controller{
 		if($validated_data === false) {
 			exit(json_encode(array(false,$gump->get_readable_errors(true))));
 		}	
-
+		$this->usuarios_model->registrar_operacion($_SESSION['id'],'eliminar usuario');
 		$this->usuarios_model->eliminar_usuario($_POST['id']);
+	}
+
+	public function obtener_historial_usuario(){
+		$gump = new GUMP();
+		$_POST = $gump->sanitize($_POST); 
+
+		$gump->validation_rules(array(
+			'id_usuario' => 'integer|integer'
+		));
+
+		$validated_data = $gump->run($_POST);
+
+		if($validated_data === false) {
+			exit(json_encode(array(false,$gump->get_readable_errors(true))));
+		}	
+
+		exit(json_encode($this->usuarios_model->obtener_operaciones_historial($_POST['id_usuario'])));
 	}
 
 	public function guardar_datos(){
@@ -77,9 +94,11 @@ class Usuarios extends CI_Controller{
 		//Si esta seteado el id es una modificacion, sino es un alta
 		if(!empty($_POST['id_usuario'])){
 			$this->usuarios_model->modificar_usuario($_POST);
+			$this->usuarios_model->registrar_operacion($_SESSION['id'],'modificar usuario');
 		}else{
 			if(!empty($_POST['passowrd'])){
 				$this->usuarios_model->crear_usuario($_POST);
+				$this->usuarios_model->registrar_operacion($_SESSION['id'],'crear usuario');
 			}else{
 				exit(json_encode(array(false,'Debe ingresar un <b>Password</b>')));
 			}
