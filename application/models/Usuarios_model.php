@@ -38,6 +38,16 @@ class Usuarios_model extends CI_Model {
             return $query->result_array();
         }
 
+
+        //Obtener el usuario por id
+        public function obtener_usuario_x_usuario($usuario){
+            $query = $this->db->get_where('usuarios', array(
+                'usuario' => $usuario
+                ));
+            
+            return $query->result_array();
+        }
+
         //Obtenemos los distintos tipos de usuarios
         public function get_tipo_usuarios(){
         	$query = $this->db->get('tipo_usuarios');        	
@@ -74,7 +84,7 @@ class Usuarios_model extends CI_Model {
 
         public function eliminar_usuario($id){
             $this->db->set('activo', 0);
-            $this->db->where('id', $id['id']);       
+            $this->db->where('id', $id);       
             $this->db->update('usuarios');
         }
 

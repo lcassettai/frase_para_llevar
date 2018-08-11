@@ -58,14 +58,23 @@ function eliminar_usuario(id){
 			      url: "usuarios/eliminar_usuario",
 			      data: 'id='+id
 			    }).done(function( resultado ) { 
-			    	var usuario = 'tr_usuario_' + id;
-			    	$('#'+usuario).remove();
-			    	limpiar_campos();
-			    	swal(
-					  'Excelente!',
-					  'Se elimino el usuario con exito!',
-					  'success'
-					)
+			    	resultado = JSON.parse(resultado);
+			    	if(!resultado[0]){
+			    	  	swal({
+			              title: "Parece que algo salio mal!",
+			              html: resultado[1],
+			              type: "warning"
+			            });
+			    	}else{
+			    		var usuario = 'tr_usuario_' + id;
+				    	$('#'+usuario).remove();
+				    	limpiar_campos();
+				    	swal(
+						  'Excelente!',
+						  'Se elimino el usuario con exito!',
+						  'success'
+						)
+			    	}
 			    }) 
 	  }
 	})

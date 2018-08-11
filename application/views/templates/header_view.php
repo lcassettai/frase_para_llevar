@@ -42,8 +42,8 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
   
-    <link type="image/x-icon" href="<?php echo assets_url('assets');?>img/votacion-icono.png" rel="shortcut icon" />
-  <link type="image/x-icon" href="<?php echo assets_url('assets');?>img/votacion-icono.png" rel="icon" />
+    <link type="image/x-icon" href="<?php echo assets_url('assets');?>img/icono.png" rel="shortcut icon" />
+  <link type="image/x-icon" href="<?php echo assets_url('assets');?>img/icono.png" rel="icon" />
 </head>
 
 <body class="hold-transition skin-red sidebar-mini fixed">

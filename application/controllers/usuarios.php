@@ -44,7 +44,7 @@ class Usuarios extends CI_Controller{
 		$_POST = $gump->sanitize($_POST); 
 
 		$gump->validation_rules(array(
-			'id_usuario' => 'integer|integer'
+			'id' => 'required|integer'
 		));
 
 		$validated_data = $gump->run($_POST);
@@ -52,8 +52,20 @@ class Usuarios extends CI_Controller{
 		if($validated_data === false) {
 			exit(json_encode(array(false,$gump->get_readable_errors(true))));
 		}	
+
+		$usuario = $this->usuarios_model->obtener_usuario_x_usuario('lcassettai');
+
+		if($usuario[0]['id'] == $_POST['id']){
+			exit(json_encode(array(false,'No puedes eliminar a dios')));
+		}
+
+		if($_SESSION['id'] == $_POST['id']){
+			exit(json_encode(array(false,'No puedes eliminar tu usuario')));
+		}
+
 		$this->usuarios_model->registrar_operacion($_SESSION['id'],'eliminar usuario');
 		$this->usuarios_model->eliminar_usuario($_POST['id']);
+		exit(json_encode(array(true,'Exito al eliminar!')));
 	}
 
 	public function obtener_historial_usuario(){
@@ -61,7 +73,7 @@ class Usuarios extends CI_Controller{
 		$_POST = $gump->sanitize($_POST); 
 
 		$gump->validation_rules(array(
-			'id_usuario' => 'integer|integer'
+			'id_usuario' => 'required|integer'
 		));
 
 		$validated_data = $gump->run($_POST);
