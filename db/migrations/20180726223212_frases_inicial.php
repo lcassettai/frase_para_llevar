@@ -34,7 +34,7 @@ class FrasesInicial extends AbstractMigration
     {	
     	$table = $this->table('tipo_usuarios');
     	$table->addColumn('descripcion','string',array('limit' => 200))
-    		  ->create();
+    		    ->create();
 
     	$table = $this->table('usuarios');
         $table->addColumn('usuario', 'string', array('limit' => 200))
@@ -49,6 +49,7 @@ class FrasesInicial extends AbstractMigration
     	$table = $this->table('categorias');
         $table->addColumn('nombre', 'string', array('limit' => 100))
               ->addColumn('descripcion', 'string', array('limit' => 1000))
+              ->addColumn('activo','boolean')
               ->create();
 
         $table = $this->table('autores');
@@ -56,6 +57,7 @@ class FrasesInicial extends AbstractMigration
               ->addColumn('apellido', 'string', array('limit' => 150))
               ->addColumn('fecha_nacimiento', 'date',array('null' => true))
               ->addColumn('link', 'string', array('limit' => 400,'null' => true))
+              ->addColumn('activo','boolean')
               ->create();
 
         $table = $this->table('frases');

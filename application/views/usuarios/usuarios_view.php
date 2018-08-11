@@ -22,7 +22,7 @@
 					echo "<td>". $us['usuario'] ."</td>";
 					echo "
 					<td class='text-center'>
-						<a href='#' class='btn btn-info btn-xs' data-toggle='tooltip' title='Editar' onclick='obtener_usuario(".$us['id'].")'>
+						<a href='#' class='btn btn-primary btn-xs' data-toggle='tooltip' title='Editar' onclick='obtener_usuario(".$us['id'].")'>
 							<i class='fa fa-pencil'></i> Editar
 						</a>
 						<a href='#' class='btn btn-success btn-xs' data-toggle='tooltip' title='Ver historial' onclick='ver_historico(".$us['id'].")'>
@@ -91,18 +91,13 @@
           <h4 class="modal-title" id="titulo-modal">Historial del usuario</h4>
         </div>
         <div class="modal-body">
-          		<table  id="table_historico" class="table table-striped"> 
+          <table  id="table_historico" class="table table-striped"> 
 			<thead> 
 				<th>#</th>
 				<th>Operacion</th>
 				<th>Fecha y hora</th>
 			</thead>
 			<tbody> 
-				<tr>
-					<td>1</td>
-					<td>Alta</td>
-					<td>20/10/1980</td>
-				</tr>
 			</tbody>
 		</table>
         </div>

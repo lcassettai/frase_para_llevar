@@ -113,6 +113,9 @@
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="<?php echo site_url('inicio');?>"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+        <li><a href="<?php echo site_url('frases');?>"><i class="glyphicon glyphicon-education"></i> <span>Frases</span></a></li>
+        <li><a href="<?php echo site_url('autores');?>"><i class="glyphicon glyphicon-user"></i> <span>Autores</span></a></li>
+        <li><a href="<?php echo site_url('categorias');?>"><i class="fa fa-list"></i> <span>Categorias</span></a></li>
         <?php if($_SESSION['tipo_usuario'] == 1):?>
         <li><a href="<?php echo site_url('usuarios');?>"><i class="fa fa-users"></i> <span>Gestion de usuarios</span></a></li>
        <?php endif;?>

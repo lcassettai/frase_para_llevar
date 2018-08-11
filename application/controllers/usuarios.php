@@ -96,7 +96,7 @@ class Usuarios extends CI_Controller{
 			$this->usuarios_model->modificar_usuario($_POST);
 			$this->usuarios_model->registrar_operacion($_SESSION['id'],'modificar usuario');
 		}else{
-			if(!empty($_POST['passowrd'])){
+			if(!empty($_POST['password'])){
 				$this->usuarios_model->crear_usuario($_POST);
 				$this->usuarios_model->registrar_operacion($_SESSION['id'],'crear usuario');
 			}else{
