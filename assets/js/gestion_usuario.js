@@ -8,7 +8,7 @@ function obtener_usuario(id){
     	$('#nombre').val(resultado[0].nombre);
     	$('#usuario').val(resultado[0].usuario);
     	$('#apellido').val(resultado[0].apellido);
-    	$("#tipo_usuario").val(resultado[0].tipo_usuario);
+    	$("#id_perfil").val(resultado[0].id_perfil);
     	$("#id_usuario").val(resultado[0].id);
     }) 
 }

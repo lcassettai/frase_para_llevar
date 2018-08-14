@@ -65,10 +65,10 @@
                   <input type="password" name="password" class="form-control" id="password">
                 </div>   
                  <div class="form-group">
-                  <label for="tipo_usuario">Tipo de usuario</label>
-                   <select class="form-control" id="tipo_usuario" name="tipo_usuario">
-                   <?php foreach($tipo_usuarios as $tu):?>
-				    <option value="<?php echo $tu['id'];?>"><?php echo $tu['descripcion'];?></option>
+                  <label for="id_perfil">Perfil</label>
+                   <select class="form-control" id="id_perfil" name="id_perfil">
+                   <?php foreach($perfiles as $p):?>
+				    <option value="<?php echo $p['id'];?>"><?php echo $p['descripcion'];?></option>
 				    <?php endforeach;?>
 				  </select>
                 </div>              

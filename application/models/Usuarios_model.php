@@ -3,7 +3,7 @@ class Usuarios_model extends CI_Model {
 
         public function __construct()
         {
-                $this->load->database();
+            $this->load->database();
         }
 
         //Obtiene un usuario especifico
@@ -48,9 +48,9 @@ class Usuarios_model extends CI_Model {
             return $query->result_array();
         }
 
-        //Obtenemos los distintos tipos de usuarios
-        public function get_tipo_usuarios(){
-        	$query = $this->db->get('tipo_usuarios');        	
+        //Obtenemos los distintos perfiles
+        public function get_perfiles(){
+        	$query = $this->db->get('perfiles');        	
             return $query->result_array();
         }
 
@@ -60,7 +60,7 @@ class Usuarios_model extends CI_Model {
                     'nombre' => $datos['nombre'],
                     'apellido' => $datos['apellido'],
                     'password' => password_hash($datos['password'], PASSWORD_DEFAULT),
-                    'tipo_usuario' => $datos['tipo_usuario'],
+                    'id_perfil' => $datos['id_perfil'],
                     'activo' => 1
             );
 
@@ -71,7 +71,7 @@ class Usuarios_model extends CI_Model {
             $this->db->set('usuario', $datos['usuario']);
             $this->db->set('nombre', $datos['nombre']);
             $this->db->set('apellido', $datos['apellido']);
-            $this->db->set('tipo_usuario', $datos['tipo_usuario']);
+            $this->db->set('id_perfil', $datos['id_perfil']);
             
             if(!empty($datos['password'])){
                  $this->db->set('password', password_hash($datos['password'], PASSWORD_DEFAULT));

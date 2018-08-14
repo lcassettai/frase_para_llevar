@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -81,7 +85,7 @@
                 <p>
                   <?php echo $_SESSION['usuario']?>
                   <small>
-                    <?php if($_SESSION['tipo_usuario'] == 1){
+                    <?php if($_SESSION['id_perfil'] == 1){
                       echo 'ADMINISTRADOR';
                     }else{
                       echo 'PARTICIPANTE';
@@ -116,8 +120,9 @@
         <li><a href="<?php echo site_url('frases');?>"><i class="glyphicon glyphicon-education"></i> <span>Frases</span></a></li>
         <li><a href="<?php echo site_url('autores');?>"><i class="glyphicon glyphicon-user"></i> <span>Autores</span></a></li>
         <li><a href="<?php echo site_url('categorias');?>"><i class="fa fa-list"></i> <span>Categorias</span></a></li>
-        <?php if($_SESSION['tipo_usuario'] == 1):?>
+        <?php if($_SESSION['id_perfil'] == 1):?>
         <li><a href="<?php echo site_url('usuarios');?>"><i class="fa fa-users"></i> <span>Gestion de usuarios</span></a></li>
+        <li><a href="<?php echo site_url('permisos');?>"><i class="glyphicon glyphicon-eye-open"></i> <span>Permisos</span></a></li>
        <?php endif;?>
         <li><a href="<?php echo site_url('login/logout');?>"><i class="glyphicon glyphicon-circle-arrow-left"></i> <span>Cerrar sesion</span></a></li>
       </ul>

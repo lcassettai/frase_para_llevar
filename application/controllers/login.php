@@ -48,7 +48,7 @@ class Login extends CI_Controller {
 			if(!empty($datos)){
 				$_SESSION['id'] = $datos[0]['id'];
 				$_SESSION['usuario'] = $datos[0]['usuario'];
-				$_SESSION['tipo_usuario'] = $datos[0]['tipo_usuario'];
+				$_SESSION['id_perfil'] = $datos[0]['id_perfil'];
 				$_SESSION['nombre'] = $datos[0]['nombre'];
 				$_SESSION['apellido'] = $datos[0]['apellido'];
 				$_SESSION['activo'] = $datos[0]['activo'];

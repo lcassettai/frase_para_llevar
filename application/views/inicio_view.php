@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- /.info-box -->
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
-   <div class="small-box bg-green">
+    <div class="small-box bg-green">
       <div class="inner">
         <span class="info-box-number"><h3>0</h3></span>
         <p>Frases</p>
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
-     <div class="small-box bg-yellow">
+    <div class="small-box bg-yellow">
       <div class="inner">
         <span class="info-box-number"><h3>0</h3></span>
         <p>Autores</p>

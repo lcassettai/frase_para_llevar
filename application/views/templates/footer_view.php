@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
     <!-- Final del contenido de la pagina -->
     </main>
     <!-- /.content -->

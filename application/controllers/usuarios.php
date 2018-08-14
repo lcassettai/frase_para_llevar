@@ -8,7 +8,7 @@ class Usuarios extends CI_Controller{
 			redirect('login');
 		}
 
-		if($_SESSION['tipo_usuario'] != 1){
+		if($_SESSION['id_perfil'] != 1){
 			show_error('No tienes permisos para estar aqui',403,'Problema de permisos');
 		}
 		$this->load->helper('form');
@@ -18,11 +18,11 @@ class Usuarios extends CI_Controller{
 	public function index(){
 		//Obtenemos todos los usuarios		
 		$usuarios = $this->usuarios_model->obtener_usuarios();
-		$tipo_usuarios = $this->usuarios_model->get_tipo_usuarios();
+		$perfiles = $this->usuarios_model->get_perfiles();
 
 		$data = array('title' => 'Gestion de usuarios',
 					  'usuarios' => $usuarios,
-					  'tipo_usuarios' => $tipo_usuarios);
+					  'perfiles' => $perfiles);
 
 		$this->load->view('templates/header_view',$data);
 		$this->load->view('usuarios/usuarios_view',$data);
@@ -94,7 +94,7 @@ class Usuarios extends CI_Controller{
 			'usuario' => 'required|max_len,200|min_len,1',
 			'nombre' => 'required|valid_name|max_len,200|min_len,1',
 			'apellido' => 'required|valid_name|max_len,200|min_len,1',
-			'tipo_usuario' => 'required|integer'
+			'id_perfil' => 'required|integer'
 		));
 
 		$validated_data = $gump->run($_POST);
