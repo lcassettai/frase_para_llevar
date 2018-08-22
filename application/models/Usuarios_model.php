@@ -99,12 +99,13 @@ class Usuarios_model extends CI_Model {
             return $query->result_array();
         }
 
-        public function registrar_operacion($datos,$tipo_operacion){
+        public function registrar_operacion($datos,$tipo_operacion,$observaciones = ''){
             date_default_timezone_set('America/Argentina/Buenos_Aires');
              $data = array(
                     'id_usuario' => $datos,
                     'fecha_hora' => date('Y-m-d H:i:s'),
-                    'operacion' => $tipo_operacion
+                    'operacion' => $tipo_operacion,
+                    'observaciones' => $observaciones
             );
 
             $this->db->insert('control_usuarios', $data); 

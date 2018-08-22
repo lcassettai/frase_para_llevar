@@ -96,6 +96,7 @@
 				<th>#</th>
 				<th>Operacion</th>
 				<th>Fecha y hora</th>
+				<th>Observaciones</th>
 			</thead>
 			<tbody> 
 			</tbody>

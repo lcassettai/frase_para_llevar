@@ -91,7 +91,7 @@ function ver_historico(id){
 
 	    	for(var i = 0; i < resultado.length ; i++){
 	    		console.log(resultado[i]);
-	    		var tr = '<tr><td>'+resultado[i]["id"]+'</td><td>'+resultado[i]["operacion"]+'</td><td>'+resultado[i]["fecha_hora"]+'</td></tr>';
+	    		var tr = '<tr><td>'+resultado[i]["id"]+'</td><td>'+resultado[i]["operacion"]+'</td><td>'+resultado[i]["fecha_hora"]+'</td><td>'+resultado[i]["observaciones"]+'</td></tr>';
 	    		$('#table_historico').append(tr);
 	    	}
 	    	
@@ -105,6 +105,4 @@ function limpiar_campos(){
     $('#usuario').val('');
     $('#password').val('');
     $('#id_usuario').val('');
-
-
 }
