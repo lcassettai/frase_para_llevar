@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 
 $(function(){
- $('#lista_perfiles').on('click',function(){
+ $('#lista_perfiles').on('change',function(){
  	var perfil_seleccionado = $('#lista_perfiles').val();
     window.location.href = "<?php echo site_url('permisos/index/'); ?>" + perfil_seleccionado;
  });
