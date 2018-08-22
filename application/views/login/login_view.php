@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- /.login-logo -->
   <div class="login-box-body">
     <div class="login-logo">
-      Frase para <b>Llevar</b>
+      Frase para <b>Llevar</b> <span id="version" style="font-size: 10px;"><?php echo obtener_version();?></span>
 	  </div>	
   	<?php echo form_open('login/verificar_credenciales'); ?>
       <div class="form-group has-feedback">
