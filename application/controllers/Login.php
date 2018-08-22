@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 
 	public function logout(){
 		if(isset($_SESSION['id'])){
-			$this->usuarios_model->registrar_operacion($_SESSION['id'],'logout');
+			$this->usuarios_model->registrar_operacion($_SESSION['id'],'logout','Salio de la sesion');
 		}
 		$_SESSION = array();
 		session_destroy();
@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 				$_SESSION['apellido'] = $datos[0]['apellido'];
 				$_SESSION['activo'] = $datos[0]['activo'];
 
-				$this->usuarios_model->registrar_operacion($datos[0]['id'],'login');
+				$this->usuarios_model->registrar_operacion($datos[0]['id'],'login','Ingreso al panel');
 			if (!empty($_POST['recordarme'])){
 				setcookie("usuario",$datos[0]['usuario'],time()+(60*60*24*365),"/");
 				setcookie("pass",$pass,time()+(60*60*24*365),"/");

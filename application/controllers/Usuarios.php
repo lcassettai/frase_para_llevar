@@ -8,9 +8,10 @@ class Usuarios extends CI_Controller{
 			redirect('login');
 		}
 
-		if($_SESSION['id_perfil'] != 1){
-			show_error('No tienes permisos para estar aqui',403,'Problema de permisos');
-		}
+		$permisos = $this->permisos->get_permiso_modulo('usuarios',$_SESSION['id_perfil']);
+			if(!$permisos[0]['activo']){
+				show_error('Usted no tiene permisos para estar aca',403,'Alto ahi loca!');
+			}
 		$this->load->helper('form');
 		$this->load->model('usuarios_model');
 	}
@@ -63,7 +64,7 @@ class Usuarios extends CI_Controller{
 			exit(json_encode(array(false,'No puedes eliminar tu usuario')));
 		}
 
-		$this->usuarios_model->registrar_operacion($_SESSION['id'],'eliminar usuario');
+		$this->usuarios_model->registrar_operacion($_SESSION['id'],'eliminar usuario','Elimino al usuario con id '.$_POST['id']);
 		$this->usuarios_model->eliminar_usuario($_POST['id']);
 		exit(json_encode(array(true,'Exito al eliminar!')));
 	}
@@ -106,11 +107,11 @@ class Usuarios extends CI_Controller{
 		//Si esta seteado el id es una modificacion, sino es un alta
 		if(!empty($_POST['id_usuario'])){
 			$this->usuarios_model->modificar_usuario($_POST);
-			$this->usuarios_model->registrar_operacion($_SESSION['id'],'modificar usuario');
+			$this->usuarios_model->registrar_operacion($_SESSION['id'],'modificar usuario','modifico el usuario '.$_POST['usuario']);
 		}else{
 			if(!empty($_POST['password'])){
 				$this->usuarios_model->crear_usuario($_POST);
-				$this->usuarios_model->registrar_operacion($_SESSION['id'],'crear usuario');
+				$this->usuarios_model->registrar_operacion($_SESSION['id'],'crear usuario','creo el usuario '.$_POST['usuario']);
 			}else{
 				exit(json_encode(array(false,'Debe ingresar un <b>Password</b>')));
 			}

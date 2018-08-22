@@ -8,6 +8,10 @@ class Frases extends CI_Controller {
 		if(!isset($_SESSION['usuario']) || !$_SESSION['activo']){
 			redirect('login');
 		}
+		$permisos = $this->permisos->get_permiso_modulo('frases',$_SESSION['id_perfil']);
+		if(!$permisos[0]['activo']){
+			show_error('Usted no tiene permisos para estar aca',403,'Alto ahi loca!');
+		}
 	}
 	
 	public function index()

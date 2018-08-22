@@ -29,10 +29,7 @@ class FrasesInicial extends AbstractMigration
       $table = $this->table('permisos');
       $table->addColumn('id_modulo','integer')
             ->addColumn('id_perfil','integer')
-            ->addColumn('crear','boolean')
-            ->addColumn('leer','boolean')
-            ->addColumn('actualizar','boolean')
-            ->addColumn('borrar','boolean')
+            ->addColumn('activo','boolean')
             ->addForeignKey('id_modulo','modulos','id')
             ->addForeignKey('id_perfil','perfiles','id')
             ->create();
@@ -74,7 +71,7 @@ class FrasesInicial extends AbstractMigration
         $table->addColumn('id_usuario', 'integer')
               ->addColumn('fecha_hora', 'datetime')
               ->addColumn('operacion', 'string', array('limit' => 100))
-              ->addColumn('detalle', 'string', array('null' => true,'limit' => 300))
+              ->addColumn('observaciones', 'string', array('null' => true,'limit' => 300))
               ->addForeignKey('id_usuario', 'usuarios', 'id')
               ->create();
     }

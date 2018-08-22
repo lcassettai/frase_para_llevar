@@ -1,6 +1,4 @@
 <?php
-
-
 use Phinx\Migration\AbstractMigration;
 
 class DatosIniciales extends AbstractMigration
@@ -41,7 +39,7 @@ class DatosIniciales extends AbstractMigration
       ],
       [
         'id' => 5,
-        'descripcion' => 'perfiles'
+        'descripcion' => 'permisos'
       ]
     ];
 
@@ -52,81 +50,52 @@ class DatosIniciales extends AbstractMigration
       [
         'id_modulo' => 1,
         'id_perfil' => 1,
-        'crear' => true,
-        'leer' => true,
-        'actualizar' => true,
-        'borrar' => true
+        'activo' => true
       ],
        [
         'id_modulo' => 2,
         'id_perfil' => 1,
-        'crear' => true,
-        'leer' => true,
-        'actualizar' => true,
-        'borrar' => true
+        'activo' => true
       ],
        [
         'id_modulo' => 3,
         'id_perfil' => 1,
-        'crear' => true,
-        'leer' => true,
-        'actualizar' => true,
-        'borrar' => true
+         'activo' => true
       ],
        [
         'id_modulo' => 4,
         'id_perfil' => 1,
-        'crear' => true,
-        'leer' => true,
-        'actualizar' => true,
-        'borrar' => true
+        'activo' => true
       ],
        [
         'id_modulo' => 5,
         'id_perfil' => 1,
-        'crear' => true,
-        'leer' => true,
-        'actualizar' => true,
-        'borrar' => true
-      ],      [
+        'activo' => true
+      ],      
+      [
         'id_modulo' => 1,
         'id_perfil' => 2,
-        'crear' => false,
-        'leer' => false,
-        'actualizar' => false,
-        'borrar' => false
+        'activo' => true
       ],
        [
         'id_modulo' => 2,
         'id_perfil' => 2,
-        'crear' => false,
-        'leer' => false,
-        'actualizar' => false,
-        'borrar' => false
+        'activo' => false
       ],
        [
         'id_modulo' => 3,
         'id_perfil' => 2,
-        'crear' => false,
-        'leer' => false,
-        'actualizar' => false,
-        'borrar' => false
+        'activo' => false
       ],
        [
         'id_modulo' => 4,
         'id_perfil' => 2,
-        'crear' => false,
-        'leer' => false,
-        'actualizar' => false,
-        'borrar' => false
+        'activo' => falses
       ],
        [
         'id_modulo' => 5,
         'id_perfil' => 2,
-        'crear' => false,
-        'leer' => false,
-        'actualizar' => false,
-        'borrar' => false
+        'activo' => false
       ]
     ];
 
@@ -149,9 +118,11 @@ class DatosIniciales extends AbstractMigration
     }
 
     public function down(){
-        $this->execute('DELETE FROM perfiles'); 
-        $this->execute('DELETE FROM modulos'); 
+        $this->execute('DELETE FROM control_usuarios'); 
+        $this->execute('DELETE FROM usuarios');         
         $this->execute('DELETE FROM permisos'); 
-        $this->execute('DELETE FROM usuarios'); 
+        $this->execute('DELETE FROM perfiles'); 
+        $this->execute('DELETE FROM modulos');       
+  
     }
 }

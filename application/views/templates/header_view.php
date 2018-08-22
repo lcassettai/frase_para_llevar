@@ -1,5 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+    $datos_permisos = $this->permisos->get_all_permisos($_SESSION['id_perfil']);
+    $perfil = $datos_permisos[0]['perfiles_descrip'];
+    $permisos = array();
+    foreach($datos_permisos as $p){
+      if($p['activo']){
+        array_push($permisos,$p['modulo_descrip']);
+      }      
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,13 +82,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <!-- User image -->
                     <li class="user-header">
                       <p>
-                        <?php echo $_SESSION['usuario']?>
+                        <?php echo strtoupper($_SESSION['usuario']);?>
                         <small>
-                        <?php if($_SESSION['id_perfil'] == 1){
-                        echo 'ADMINISTRADOR';
-                        }else{
-                        echo 'PARTICIPANTE';
-                        }
+                        <?php 
+                          echo strtoupper($perfil);
                         ?>
                         </small>
                       </p>
@@ -105,14 +110,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <ul class="sidebar-menu" data-widget="tree">
               <li class="header">MENU</li>
               <!-- Optionally, you can add icons to the links -->
-              <li><a href="<?php echo site_url('inicio');?>"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-              <li><a href="<?php echo site_url('frases');?>"><i class="glyphicon glyphicon-education"></i> <span>Frases</span></a></li>
+              <li>
+                <a href="<?php echo site_url('inicio');?>"><i class="fa fa-home"></i> <span>Inicio</span></a>
+              </li>
+              <!-- FRASES -->
+              <?php if(in_array('frases',$permisos)):?>
+              <li>
+                <a href="<?php echo site_url('frases');?>"><i class="glyphicon glyphicon-education"></i> <span>Frases</span></a>
+              </li>
+              <?php endif; ?>
+              
+               <!-- AUTORES -->
+               <?php if(in_array('autores',$permisos)):?>
               <li><a href="<?php echo site_url('autores');?>"><i class="glyphicon glyphicon-user"></i> <span>Autores</span></a></li>
+               <?php endif; ?>
+
+                <!-- CATEGORIAS -->
+               <?php if(in_array('categorias',$permisos)):?>
               <li><a href="<?php echo site_url('categorias');?>"><i class="fa fa-list"></i> <span>Categorias</span></a></li>
-              <?php if($_SESSION['id_perfil'] == 1):?>
+               <?php endif; ?>
+
+                <!-- USUARIOS -->
+               <?php if(in_array('usuarios',$permisos)):?>
               <li><a href="<?php echo site_url('usuarios');?>"><i class="fa fa-users"></i> <span>Gestion de usuarios</span></a></li>
+              <?php endif; ?>
+
+               <!-- PERFILES -->
+               <?php if(in_array('permisos',$permisos)):?>
               <li><a href="<?php echo site_url('permisos');?>"><i class="glyphicon glyphicon-eye-open"></i> <span>Permisos</span></a></li>
-              <?php endif;?>
+               <?php endif; ?>
               <li><a href="<?php echo site_url('login/logout');?>"><i class="glyphicon glyphicon-circle-arrow-left"></i> <span>Cerrar sesion</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->

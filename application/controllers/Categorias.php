@@ -8,6 +8,10 @@ class Categorias extends CI_Controller {
 		if(!isset($_SESSION['usuario']) || !$_SESSION['activo']){
 			redirect('login');
 		}
+		$permisos = $this->permisos->get_permiso_modulo('categorias',$_SESSION['id_perfil']);
+		if(!$permisos[0]['activo']){
+			show_error('Usted no tiene permisos para estar aca',403,'Alto ahi loca!');
+		}
 		$this->load->helper('form');
 		$this->load->model('categorias_model');
 	}
