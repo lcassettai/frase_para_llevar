@@ -5,6 +5,9 @@
 
 		public function __construct(){
 			parent::__construct();
+			if(!isset($_SESSION['usuario']) || !$_SESSION['activo']){
+				redirect('login');
+			}
 			$permisos = $this->permisos->get_permiso_modulo('permisos',$_SESSION['id_perfil']);
 			if(!$permisos[0]['activo']){
 				show_error('Usted no tiene permisos para estar aca',403,'Alto ahi loca!');
@@ -47,7 +50,7 @@
 
 				$this->permisos->update_permisos($id_perfil,$m['id'], $estado);							
 			}
-			$this->usuarios_model->registrar_operacion($_SESSION['id'],'logout','Modifico los permisos del perfil con '.$id_perfil);
+			$this->usuarios_model->registrar_operacion($_SESSION['id'],'logout','Modifico los permisos del perfil '.$id_perfil);
 			exit(json_encode(array(true,'Se actualizo con exito')));
 			
 		}
