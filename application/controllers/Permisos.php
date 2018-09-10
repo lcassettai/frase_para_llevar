@@ -29,7 +29,7 @@
 		}
 
 		public function actualizar_permisos(){
-			$gump = new GUMP();
+			$gump = new GUMP('es');
 			$_POST = $gump->sanitize($_POST); 
 
 			$gump->validation_rules(array(

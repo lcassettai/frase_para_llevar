@@ -41,7 +41,7 @@ class Usuarios extends CI_Controller{
 	}
 
 	public function eliminar_usuario(){
-		$gump = new GUMP();
+		$gump = new GUMP('es');
 		$_POST = $gump->sanitize($_POST); 
 
 		$gump->validation_rules(array(
@@ -70,7 +70,7 @@ class Usuarios extends CI_Controller{
 	}
 
 	public function obtener_historial_usuario(){
-		$gump = new GUMP();
+		$gump = new GUMP('es');
 		$_POST = $gump->sanitize($_POST); 
 
 		$gump->validation_rules(array(
@@ -87,7 +87,7 @@ class Usuarios extends CI_Controller{
 	}
 
 	public function guardar_datos(){
-		$gump = new GUMP();
+		$gump = new GUMP('es');
 		$_POST = $gump->sanitize($_POST); 
 
 		$gump->validation_rules(array(

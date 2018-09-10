@@ -63,7 +63,7 @@ class Autores extends CI_Controller{
 
 	public function guardar_autor()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
@@ -94,7 +94,7 @@ class Autores extends CI_Controller{
 	
 	public function obtener_autor()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
@@ -114,7 +114,7 @@ class Autores extends CI_Controller{
 	
 	public function eliminar_autor()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
