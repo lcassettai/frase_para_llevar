@@ -53,3 +53,4 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['pagina/(:num)'] = 'categorias/index/$1';
+$route['pagina_autor/(:num)'] = 'autores/index/$1';
