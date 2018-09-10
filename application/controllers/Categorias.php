@@ -66,7 +66,7 @@ class Categorias extends CI_Controller
 
     public function obtener_categoria()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
@@ -86,7 +86,7 @@ class Categorias extends CI_Controller
 
     public function eliminar_categoria()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
@@ -106,7 +106,7 @@ class Categorias extends CI_Controller
 
     public function guardar_categoria()
     {
-        $gump = new GUMP();
+        $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
 
         $gump->validation_rules(array(
