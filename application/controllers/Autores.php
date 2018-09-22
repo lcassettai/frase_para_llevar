@@ -1,22 +1,18 @@
 <?php 
-	defined('BASEPATH') OR exit('No se permiten scripts directos');
+    defined('BASEPATH') or exit('No se permiten scripts directos');
 
-class Autores extends CI_Controller{
-	public function __construct(){
-		parent::__construct();
-		if(!isset($_SESSION['usuario']) || !$_SESSION['activo']){
-			redirect('login');
-		}
-		$permisos = $this->permisos->get_permiso_modulo('autores',$_SESSION['id_perfil']);
-		if(!$permisos[0]['activo']){
-			show_error('Usted no tiene permisos para estar aca',403,'Alto ahi loca!');
-		}
-		$this->load->model('usuarios_model');
-		$this->load->model('autores_model');
-	}
+class Autores extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        verificar_permisos('autores');
+        $this->load->model('usuarios_model');
+        $this->load->model('autores_model');
+    }
 
-	public function index($pagina = false)
-	{
+    public function index($pagina = false)
+    {
         $this->load->library('Pagination');
 
         $inicio = 0;
@@ -26,7 +22,7 @@ class Autores extends CI_Controller{
             $inicio = ($pagina -1) * $limite;
         }
 
-       $datos = array('autores' =>  $this->autores_model->get_autores(null, $inicio, $limite));
+        $datos = array('autores' =>  $this->autores_model->get_autores(null, $inicio, $limite));
 
         //Url base que mostrara, ver routes.php
         $config['base_url'] = base_url().'pagina_autor/';
@@ -55,13 +51,13 @@ class Autores extends CI_Controller{
         
 
         $this->pagination->initialize($config);
-		
-		$this->load->view('templates/header_view',array('title' => 'Autores'));
-		$this->load->view('autores/autores_view',$datos);		
-		$this->load->view('templates/footer_view');
-	}
+        
+        $this->load->view('templates/header_view', array('title' => 'Autores'));
+        $this->load->view('autores/autores_view', $datos);
+        $this->load->view('templates/footer_view');
+    }
 
-	public function guardar_autor()
+    public function guardar_autor()
     {
         $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
@@ -69,9 +65,9 @@ class Autores extends CI_Controller{
         $gump->validation_rules(array(
             'id_autor' => 'integer',
             'apellido_autor' => 'required|max_len,100|min_len,1',
-			'nombre_autor' => 'required|max_len,100|min_len,1',
-			'url_bio' => 'valid_url|max_len,500',
-			'fecha_nacimiento' => 'date'
+            'nombre_autor' => 'required|max_len,100|min_len,1',
+            'url_bio' => 'valid_url|max_len,500',
+            'fecha_nacimiento' => 'date'
         ));
 
         $validated_data = $gump->run($_POST);
@@ -82,17 +78,17 @@ class Autores extends CI_Controller{
 
         //Si esta seteado el id es una modificacion, sino es un alta
         if (!empty($_POST['id_autor'])) {
-            $this->autores_model->modificar_autor($_POST['id_autor'], $_POST['nombre_autor'], $_POST['apellido_autor'],$_POST['fecha_nacimiento'],$_POST['url_bio']);
+            $this->autores_model->modificar_autor($_POST['id_autor'], $_POST['nombre_autor'], $_POST['apellido_autor'], $_POST['fecha_nacimiento'], $_POST['url_bio']);
             $this->usuarios_model->registrar_operacion($_SESSION['id'], 'modificar autor', 'modifico el autor '.$_POST['apellido_autor']);
         } else {
-            $this->autores_model->insert_autor($_POST['nombre_autor'], $_POST['apellido_autor'],$_POST['fecha_nacimiento'],$_POST['url_bio']);
+            $this->autores_model->insert_autor($_POST['nombre_autor'], $_POST['apellido_autor'], $_POST['fecha_nacimiento'], $_POST['url_bio']);
             $this->usuarios_model->registrar_operacion($_SESSION['id'], 'crear autor', 'creo el autor '.$_POST['apellido_autor']);
         }
 
         exit(json_encode(array(true,'Se cargaron los datos con exito')));
-	}
-	
-	public function obtener_autor()
+    }
+    
+    public function obtener_autor()
     {
         $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
@@ -111,8 +107,8 @@ class Autores extends CI_Controller{
 
         exit(json_encode(array(true,$datos_autor)));
     }
-	
-	public function eliminar_autor()
+    
+    public function eliminar_autor()
     {
         $gump = new GUMP('es');
         $_POST = $gump->sanitize($_POST);
@@ -132,5 +128,3 @@ class Autores extends CI_Controller{
         exit(json_encode(array(true,"Se elimino la categoria con exito")));
     }
 }
-
-?>
